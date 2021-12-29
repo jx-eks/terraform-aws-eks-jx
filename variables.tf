@@ -4,7 +4,7 @@
 variable "region" {
   description = "The region to create the resources into"
   type        = string
-  default     = "us-east-1"
+  default     = "eu-central-1"
 }
 
 variable "cluster_name" {
@@ -78,25 +78,25 @@ variable "velero_username" {
 variable "desired_node_count" {
   description = "The number of worker nodes to use for the cluster"
   type        = number
-  default     = 3
+  default     = 1
 }
 
 variable "min_node_count" {
   description = "The minimum number of worker nodes to use for the cluster"
   type        = number
-  default     = 3
+  default     = 1
 }
 
 variable "max_node_count" {
   description = "The maximum number of worker nodes to use for the cluster"
   type        = number
-  default     = 5
+  default     = 3
 }
 
 variable "node_machine_type" {
   description = "The instance type to use for the cluster's worker nodes"
   type        = string
-  default     = "m5.large"
+  default     = "t3.xlarge"
 }
 
 variable "spot_price" {
@@ -114,7 +114,7 @@ variable "node_group_ami" {
 variable "node_group_disk_size" {
   description = "node group worker disk size"
   type        = string
-  default     = "50"
+  default     = "30"
 }
 
 variable "node_groups_managed" {
@@ -126,7 +126,7 @@ variable "node_groups_managed" {
 variable "key_name" {
   description = "The ssh key pair name"
   type        = string
-  default     = ""
+  default     = "testnet-key"
 }
 
 variable "volume_type" {
@@ -138,7 +138,7 @@ variable "volume_type" {
 variable "volume_size" {
   description = "The volume size in GB"
   type        = number
-  default     = 50
+  default     = 30
 }
 
 variable "iops" {
@@ -158,19 +158,19 @@ variable "vpc_name" {
 variable "public_subnets" {
   description = "The public subnet CIDR block to use in the created VPC"
   type        = list(string)
-  default     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+  default     = ["10.2.1.0/24", "10.2.2.0/24", "10.2.3.0/24"]
 }
 
 variable "private_subnets" {
   description = "The private subnet CIDR block to use in the created VPC"
   type        = list(string)
-  default     = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
+  default     = ["10.2.4.0/24", "10.2.5.0/24", "10.2.6.0/24"]
 }
 
 variable "vpc_cidr_block" {
   description = "The vpc CIDR block"
   type        = string
-  default     = "10.0.0.0/16"
+  default     = "10.2.0.0/16"
 }
 
 variable "enable_nat_gateway" {
@@ -325,7 +325,7 @@ variable "map_users" {
 variable "enable_key_name" {
   description = "Flag to enable ssh key pair name"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "s3_kms_arn" {

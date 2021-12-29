@@ -49,3 +49,6 @@ bin
 
 #Intellij
 .idea
+
+#aws
+.aws/credentials
