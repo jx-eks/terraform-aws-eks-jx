@@ -10,18 +10,19 @@ variable "region" {
 variable "cluster_name" {
   description = "Variable to provide your desired name for the cluster. The script will create a random name if this is empty"
   type        = string
-  default     = ""
+  default     = "cicd-testnet"
 }
 
 variable "profile" {
   description = "The AWS Profile used to provision the EKS Cluster"
   type        = string
-  default     = null
+  default     = "cicd"
 }
 
 variable "cluster_version" {
   description = "Kubernetes version to use for the EKS cluster."
   type        = string
+  default = "1.20"
 }
 
 // ----------------------------------------------------------------------------
@@ -90,13 +91,13 @@ variable "min_node_count" {
 variable "max_node_count" {
   description = "The maximum number of worker nodes to use for the cluster"
   type        = number
-  default     = 3
+  default     = 1
 }
 
 variable "node_machine_type" {
   description = "The instance type to use for the cluster's worker nodes"
   type        = string
-  default     = "t3.xlarge"
+  default     = "m5.large"
 }
 
 variable "spot_price" {
@@ -114,7 +115,7 @@ variable "node_group_ami" {
 variable "node_group_disk_size" {
   description = "node group worker disk size"
   type        = string
-  default     = "30"
+  default     = "50"
 }
 
 variable "node_groups_managed" {
@@ -138,7 +139,7 @@ variable "volume_type" {
 variable "volume_size" {
   description = "The volume size in GB"
   type        = number
-  default     = 30
+  default     = 50
 }
 
 variable "iops" {
@@ -191,7 +192,7 @@ variable "single_nat_gateway" {
 variable "apex_domain" {
   description = "The main domain to either use directly or to configure a subdomain from"
   type        = string
-  default     = ""
+  default     = "cicd.test.peaq.network"
 }
 
 variable "subdomain" {
@@ -385,25 +386,25 @@ variable "enable_worker_groups_launch_template" {
 variable "lt_desired_nodes_per_subnet" {
   description = "The number of worker nodes in each Subnet (AZ) if using Launch Templates"
   type        = number
-  default     = 1
+  default     = 0
 }
 
 variable "lt_min_nodes_per_subnet" {
   description = "The minimum number of worker nodes in each Subnet (AZ) if using Launch Templates"
   type        = number
-  default     = 1
+  default     = 0
 }
 
 variable "lt_max_nodes_per_subnet" {
   description = "The maximum number of worker nodes in each Subnet (AZ) if using Launch Templates"
   type        = number
-  default     = 2
+  default     = 1
 }
 
 variable "registry" {
   description = "Registry used to store images"
   type        = string
-  default     = ""
+  default     = "041640568050.dkr.ecr.eu-central-1.amazonaws.com"
 }
 
 variable "jx_git_operator_values" {
@@ -415,13 +416,13 @@ variable "jx_git_operator_values" {
 variable "jx_git_url" {
   description = "URL for the Jenkins X cluster git repository"
   type        = string
-  default     = ""
+  default     = "https://github.com/jx-eks/jx3-eks-vault.git"
 }
 
 variable "jx_bot_username" {
   description = "Bot username used to interact with the Jenkins X cluster git repository"
   type        = string
-  default     = ""
+  default     = "jx-bot"
 }
 
 variable "jx_bot_token" {
@@ -619,6 +620,7 @@ variable "nginx_namespace" {
 variable "nginx_chart_version" {
   type        = string
   description = "nginx chart version"
+  default     = "3.12.0"
 }
 
 variable "create_nginx_namespace" {

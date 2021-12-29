@@ -128,6 +128,7 @@ output "vault_user_id" {
 output "vault_user_secret" {
   value       = length(module.vault.vault_user_secret) > 0 ? module.vault.vault_user_secret[0] : ""
   description = "The Vault IAM user secret"
+  sensitive = true
 }
 
 // ----------------------------------------------------------------------------
